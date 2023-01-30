@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bcastelo <bcastelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 16:48:06 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/01/29 23:14:53 by bcastelo         ###   ########.fr       */
+/*   Created: 2023/01/29 23:23:17 by bcastelo          #+#    #+#             */
+/*   Updated: 2023/01/29 23:28:27 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	free_chars(t_line *list);
 
