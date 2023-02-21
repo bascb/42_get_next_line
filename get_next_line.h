@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: bcastelo <bcastelo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:48:40 by bcastelo          #+#    #+#             */
-/*   Updated: 2022/11/27 16:51:54 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/02/21 10:28:51 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,10 @@
 #  define BUFFER_SIZE 42
 # endif
 
-typedef struct c_list
-{
-	char			buffer[BUFFER_SIZE + 1];
-	int				i;
-	int				line_size;
-	struct c_list	*next;
-	struct c_list	*last;
-}					t_line;
+# if BUFFER_SIZE > 1000
+#  undef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 char	*get_next_line(int fd);
 
