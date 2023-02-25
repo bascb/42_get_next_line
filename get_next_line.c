@@ -6,12 +6,11 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:48:06 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/02/25 15:31:54 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:13:32 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 size_t	ft_strlen(const char *str);
 
@@ -127,11 +126,11 @@ char	*append_to_line(char *buffer, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[1024][BUFFER_SIZE + 1];
+	static char	buffer[FOPEN_MAX][BUFFER_SIZE + 1];
 	char		*line;
 	char		*c;
 
-	if (fd < 0 || BUFFER_SIZE < 1)
+	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE < 1)
 		return (NULL);
 	if (read(fd, 0, 0) < 0)
 		return (move_buffer(buffer[fd], buffer[fd]));
