@@ -6,7 +6,7 @@
 /*   By: bcastelo <bcastelo@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 16:48:06 by bcastelo          #+#    #+#             */
-/*   Updated: 2023/02/25 17:13:32 by bcastelo         ###   ########.fr       */
+/*   Updated: 2023/02/25 17:28:22 by bcastelo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,6 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size);
 size_t	ft_strlcat(char *dest, const char *src, size_t size);
 
 char	*ft_strjoin(char const *s1, char const *s2);
-
-/*void	print_buffer(char *buffer)
-{
-	size_t	i;
-
-	i = 0;
-	while ( i < BUFFER_SIZE)
-	{
-		if (buffer[i] == 0)
-			printf("{0}");
-		else if (buffer[i] == '\n')
-			printf("{newline}");
-		else
-			printf("%c", buffer[i]);
-		i++;
-	}
-	printf("\n");
-} */
 
 /* Returns a pointer to a new string,
    duplicated from str */
@@ -126,26 +108,26 @@ char	*append_to_line(char *buffer, char *line)
 
 char	*get_next_line(int fd)
 {
-	static char	buffer[FOPEN_MAX][BUFFER_SIZE + 1];
+	static char	buffer[BUFFER_SIZE + 1];
 	char		*line;
 	char		*c;
 
-	if (fd < 0 || fd > FOPEN_MAX || BUFFER_SIZE < 1)
+	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (read(fd, 0, 0) < 0)
-		return (move_buffer(buffer[fd], buffer[fd]));
+		return (move_buffer(buffer, buffer));
 	line = NULL;
-	c = ft_strchr(buffer[fd], '\n');
+	c = ft_strchr(buffer, '\n');
 	if (c != NULL)
-		return (return_line(line, buffer[fd], c));
-	if (ft_strlen(buffer[fd]) > 0)
-		line = append_to_line(buffer[fd], line);
-	while (read(fd, buffer[fd], BUFFER_SIZE) > 0)
+		return (return_line(line, buffer, c));
+	if (ft_strlen(buffer) > 0)
+		line = append_to_line(buffer, line);
+	while (read(fd, buffer, BUFFER_SIZE) > 0)
 	{
-		c = ft_strchr(buffer[fd], '\n');
+		c = ft_strchr(buffer, '\n');
 		if (c != NULL)
-			return (return_line(line, buffer[fd], c));
-		line = append_to_line(buffer[fd], line);
+			return (return_line(line, buffer, c));
+		line = append_to_line(buffer, line);
 	}
 	if (line && ft_strlen(line) > 0)
 		return (line);
